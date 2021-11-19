@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="modDesc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="author" type="xs:string"/>
+  <xs:element name="version" type="xs:NMTOKEN"/>
+  <xs:element ref="title"/>
+        <xs:element ref="description"/>
+        <xs:element ref="iconFilename"/>
+        <xs:element name="multiplayer">
+    <xs:complexType>
+      <xs:attribute name="supported" use="required" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:choice>
+          <xs:element name="maps">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="map">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="title"/>
+        <xs:element ref="description"/>
+        <xs:element ref="iconFilename"/>
+      </xs:sequence>
+      <xs:attribute name="className" use="required" type="xs:NCName"/>
+      <xs:attribute name="configFilename" use="required"/>
+      <xs:attribute name="defaultItemsXMLFilename" use="required" type="xs:NCName"/>
+      <xs:attribute name="defaultVehiclesXMLFilename" use="required" type="xs:NCName"/>
+      <xs:attribute name="filename" use="required"/>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:sequence>
+            <xs:element name="materialHolders">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="extraSourceFiles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="sourceFile">
+    <xs:complexType>
+      <xs:attribute name="filename" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="specializations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="specialization"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="vehicleTypes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="type" maxOccurs="unbounded">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="specialization"/>
+      </xs:sequence>
+      <xs:attribute name="filename" use="required"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="parent" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="placeableTypes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="placeableType">
+    <xs:complexType>
+      <xs:attribute name="className" use="required" type="xs:NCName"/>
+      <xs:attribute name="filename" use="required"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="storeItems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="storeItem" maxOccurs="unbounded">
+    <xs:complexType>
+      <xs:attribute name="xmlFilename" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="brands">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="brand">
+    <xs:complexType>
+      <xs:attribute name="image" use="required" type="xs:NCName"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="title" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="brandColors">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="baleTypes">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="actions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="action" maxOccurs="unbounded">
+    <xs:complexType>
+      <xs:attribute name="axisType" use="required" type="xs:NCName"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="inputBinding">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="actionBinding" maxOccurs="unbounded">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="binding" maxOccurs="unbounded">
+    <xs:complexType>
+      <xs:attribute name="axisComponent"/>
+      <xs:attribute name="device" use="required" type="xs:NCName"/>
+      <xs:attribute name="input" use="required"/>
+      <xs:attribute name="inputComponent"/>
+    </xs:complexType>
+  </xs:element>
+  </xs:sequence>
+      <xs:attribute name="action" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="l10n">
+    <xs:complexType>
+      <xs:attribute name="filenamePrefix" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  </xs:sequence>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="descVersion" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="title">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="en"/>
+        <xs:element minOccurs="0" ref="de"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="description">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="en"/>
+        <xs:element ref="de"/>
+        <xs:sequence minOccurs="0">
+          <xs:element name="br" type="xs:string"/>
+  <xs:element name="cs" type="xs:string"/>
+  <xs:element name="ct" type="xs:string"/>
+  <xs:element name="cz" type="xs:string"/>
+  <xs:element name="ea" type="xs:string"/>
+  <xs:element name="es" type="xs:string"/>
+  <xs:element name="fr" type="xs:string"/>
+  <xs:element name="hu" type="xs:string"/>
+  <xs:element name="it" type="xs:string"/>
+  <xs:element name="jp" type="xs:string"/>
+  <xs:element name="kr" type="xs:string"/>
+  <xs:element name="nl" type="xs:string"/>
+  <xs:element name="pl" type="xs:string"/>
+  <xs:element name="pt" type="xs:string"/>
+  <xs:element name="ro" type="xs:string"/>
+  <xs:element name="ru" type="xs:string"/>
+  <xs:element name="tr" type="xs:string"/>
+  </xs:sequence>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="iconFilename" type="xs:NCName"/>
+  <xs:element name="specialization">
+    <xs:complexType>
+      <xs:attribute name="className" type="xs:NCName"/>
+      <xs:attribute name="filename"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="en" type="xs:string"/>
+  <xs:element name="de" type="xs:string"/>
+</xs:schema>
